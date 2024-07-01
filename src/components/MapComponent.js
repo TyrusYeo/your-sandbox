@@ -12,7 +12,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 })
 
-export default function MapComponent() {
+export const MapComponent = () => {
   const [position, setPosition] = useState(null)
 
   useEffect(() => {

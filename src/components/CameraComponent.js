@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback } from 'react'
 import Webcam from 'react-webcam'
 
-export default function CameraComponent() {
+export const CameraComponent = () => {
   const webcamRef = useRef(null)
   const [imgSrc, setImgSrc] = useState(null)
 

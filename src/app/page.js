@@ -1,6 +1,6 @@
 "use client";
 
-import BookComponent from '@/components/BookComponent'
+import { BookComponent } from '@/components/BookComponent'
 
 export default function Home() {
   return (

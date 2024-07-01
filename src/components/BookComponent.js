@@ -1,12 +1,36 @@
 "use client";
 
-import { useState } from 'react'
-import HTMLFlipBook from 'react-pageflip'
-import CameraComponent from './CameraComponent'
-import MapComponent from './MapComponent'
+import React, { useState, useRef, useEffect } from 'react';
+import HTMLFlipBook from 'react-pageflip';
+import { BookCover } from './BookCover';
+import { BookPage } from './BookPage';
 
-export default function BookComponent() {
-  const [pageNumber, setPageNumber] = useState(0)
+export const BookComponent = () => {
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const flipBookRef = useRef(null);
+
+  // const getPageFlip = () => {
+  //   return flipBookRef.current?.pageFlip;
+  // };
+
+  // const nextButtonClick = () => {
+  //   getPageFlip()?.flipNext();
+  // };
+
+  // const prevButtonClick = () => {
+  //   getPageFlip()?.flipPrev();
+  // };
+
+  const onPage = (e) => {
+    setPage(e.data);
+  };
+
+  // useEffect(() => {
+  //   if (flipBookRef.current) {
+  //     setTotalPage(getPageFlip()?.getPageCount());
+  //   }
+  // }, []);
 
   return (
     <div className="w-full max-w-4xl">
@@ -21,23 +45,41 @@ export default function BookComponent() {
         maxShadowOpacity={0.5}
         showCover={true}
         mobileScrollSupport={true}
-        onFlip={(e) => setPageNumber(e.data)}
-        className="book-template"
+        onFlip={onPage}
+        className="demo-book"
+        ref={flipBookRef}
       >
-        <div className="page bg-primary p-8">
-          <h1 className="text-6xl font-arizona text-text">Welcome</h1>
-          <p className="text-text text-xl">Flip the page to start your journey...</p>
-        </div>
-        <div className="page bg-secondary p-8">
-          {/* <h2 className="text-4xl font-semibold text-background mb-4">Take a Photo</h2> */}
-          <CameraComponent />
-        </div>
-        <div className="page bg-accent p-8">
-          <h2 className="text-4xl font-semibold text-text mb-4">Your Location</h2>
-          <MapComponent />
-        </div>
+        <BookCover>Serendipitous Connections</BookCover>
+        <BookPage number={1}>
+          Welcome to a journey of unexpected encounters...
+        </BookPage>
+        <BookPage number={2}>
+          Take a photo and become part of the story...
+        </BookPage>
+        <BookPage number={3}>
+          Discover where you are in the grand tapestry of connections...
+        </BookPage>
+        <BookCover>The Beginning of Your Adventure</BookCover>
       </HTMLFlipBook>
-      <p className="mt-4 text-center text-text">Page {pageNumber + 1} / 3</p>
+      {/* <div className="container mt-4 flex justify-between items-center">
+        <button 
+          type="button" 
+          onClick={prevButtonClick}
+          className="bg-primary text-background px-4 py-2 rounded"
+        >
+          Previous page
+        </button>
+        <span className="text-text">
+          [{page + 1} of {totalPage}]
+        </span>
+        <button 
+          type="button" 
+          onClick={nextButtonClick}
+          className="bg-primary text-background px-4 py-2 rounded"
+        >
+          Next page
+        </button>
+      </div> */}
     </div>
-  )
+  );
 }
