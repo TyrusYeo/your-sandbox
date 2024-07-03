@@ -10,27 +10,9 @@ export const BookComponent = () => {
   const [totalPage, setTotalPage] = useState(0);
   const flipBookRef = useRef(null);
 
-  // const getPageFlip = () => {
-  //   return flipBookRef.current?.pageFlip;
-  // };
-
-  // const nextButtonClick = () => {
-  //   getPageFlip()?.flipNext();
-  // };
-
-  // const prevButtonClick = () => {
-  //   getPageFlip()?.flipPrev();
-  // };
-
   const onPage = (e) => {
     setPage(e.data);
   };
-
-  // useEffect(() => {
-  //   if (flipBookRef.current) {
-  //     setTotalPage(getPageFlip()?.getPageCount());
-  //   }
-  // }, []);
 
   return (
     <div className="w-full max-w-4xl">
@@ -61,25 +43,6 @@ export const BookComponent = () => {
         </BookPage>
         <BookCover>The Beginning of Your Adventure</BookCover>
       </HTMLFlipBook>
-      {/* <div className="container mt-4 flex justify-between items-center">
-        <button 
-          type="button" 
-          onClick={prevButtonClick}
-          className="bg-primary text-background px-4 py-2 rounded"
-        >
-          Previous page
-        </button>
-        <span className="text-text">
-          [{page + 1} of {totalPage}]
-        </span>
-        <button 
-          type="button" 
-          onClick={nextButtonClick}
-          className="bg-primary text-background px-4 py-2 rounded"
-        >
-          Next page
-        </button>
-      </div> */}
     </div>
   );
 }
